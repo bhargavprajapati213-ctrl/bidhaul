@@ -1,0 +1,17 @@
+{
+  "name": "bidhaul",
+  "version": "1.0.0",
+  "description": "BidHaul - heavy equipment online auction website (frontend + Node.js backend + admin panel)",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node --watch server/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

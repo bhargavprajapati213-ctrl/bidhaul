@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BidHaul — Heavy Equipment Auctions</title>
+  <meta name="description" content="Buy and sell used trucks, construction and heavy equipment through trusted online auctions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23d71920%22/%3E%3Ctext x=%2216%22 y=%2223%22 font-size=%2220%22 font-family=%22Arial%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22%3Eb%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="top">
+  <div class="container header-inner">
+    <a href="#top" class="logo">bid<span>haul</span><svg viewBox="0 0 24 24" class="logo-arrow"><path d="M4 18 L14 8 M14 8 H8 M14 8 V14" /></svg></a>
+
+    <div class="cat-dropdown">
+      <button class="btn-cat" id="catBtn" aria-expanded="false">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        All Categories <span class="chev">▾</span>
+      </button>
+      <div class="dropdown-menu" id="catMenu"></div>
+    </div>
+
+    <nav class="nav" id="nav">
+      <div class="nav-item">
+        <a href="#auctions">Auctions <span class="chev">▾</span></a>
+        <div class="sub"><a href="#auctions" data-status="live">Live Auctions</a><a href="#auctions" data-status="ended">Auction Results</a></div>
+      </div>
+      <div class="nav-item">
+        <a href="#auctions">Buy Equipment <span class="chev">▾</span></a>
+        <div class="sub"><a href="#auctions" data-cat="trucks">Trucks</a><a href="#auctions" data-cat="earthmoving">Earthmoving</a><a href="#auctions" data-cat="cranes">Cranes</a></div>
+      </div>
+      <div class="nav-item">
+        <a href="#sell">Sell Equipment <span class="chev">▾</span></a>
+        <div class="sub"><a href="#sell">Consign Equipment</a><a href="#capital">Fleet Remarketing</a></div>
+      </div>
+      <div class="nav-item">
+        <a href="#about">About Us <span class="chev">▾</span></a>
+        <div class="sub"><a href="#reviews">Reviews</a><a href="#news">News</a></div>
+      </div>
+      <div class="nav-item"><a href="#sell">Contacts</a></div>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+      <button class="btn-outline" id="loginBtn">Log In</button>
+      <button class="icon-btn burger" id="burger" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ============ HERO ============ -->
+<section class="container">
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Trusted partner for some of the largest equipment owners in the world</h1>
+      <p>Transparent online auctions for trucks, construction and heavy equipment — inspected, verified and shipped worldwide.</p>
+      <a href="#auctions" class="btn-red">Bid Now</a>
+    </div>
+
+    <div class="search-card">
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="keywords">Search by Keywords</button>
+        <button class="tab" data-tab="equipment">Equipment</button>
+        <button class="tab" data-tab="results">Auction Results</button>
+      </div>
+      <form class="search-row" id="searchForm">
+        <div class="search-input">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="text" id="searchInput" placeholder="Search for Vehicles, Auctions and Locations" />
+          <select id="searchCat" class="hidden"><option value="">All equipment</option></select>
+        </div>
+        <button type="submit" class="btn-red">Search</button>
+      </form>
+      <div class="popular">
+        <h4>Popular Categories</h4>
+        <div class="chips" id="chips"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONFIDENCE BANNER ============ -->
+<section class="container">
+  <div class="confidence">
+    <div class="conf-img" style="background-image:url('/images/category-excavator.jpg')"></div>
+    <div class="conf-body">
+      <div class="conf-title">Bid With Confidence</div>
+      <div class="conf-grid">
+        <div class="conf-brand">bid<span>haul</span><small>certified marketplace</small></div>
+        <ul>
+          <li>Largest Independent Equipment Seller</li>
+          <li><span id="statSold">Over 100,000</span> Items Sold</li>
+        </ul>
+        <ul>
+          <li>100% Guaranteed Title</li>
+          <li>Global Shipping</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AUCTIONS ============ -->
+<section class="container section" id="auctions">
+  <div class="section-head">
+    <h2>Working capital<br />that just works</h2>
+    <div>
+      <p>Join our ongoing auctions to find high-quality equipment at competitive prices. New deals and unique items are added daily, waiting for their new owners.</p>
+      <a href="#auctions" class="link-red" id="viewAll">View all auctions →</a>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <div class="filter-pills" id="filterPills"></div>
+    <select id="sortSel" aria-label="Sort">
+      <option value="ending">Ending soonest</option>
+      <option value="newest">Newly listed</option>
+      <option value="price_asc">Price: low to high</option>
+      <option value="price_desc">Price: high to low</option>
+    </select>
+  </div>
+  <p class="result-info" id="resultInfo"></p>
+  <div class="grid" id="auctionGrid"></div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="container section" id="reviews">
+  <div class="section-head">
+    <h2>What our<br />clients say</h2>
+    <div>
+      <p>From national lenders to municipal fleets, owners trust us to remarket their equipment quickly and for the best possible return.</p>
+      <a href="#reviews" class="link-red">View all reviews →</a>
+    </div>
+  </div>
+  <div class="testimonials" id="testimonials"></div>
+</section>
+
+<!-- ============ PARTNERS ============ -->
+<section class="partners" id="partners"></section>
+
+<!-- ============ CAPITAL SPLIT ============ -->
+<section class="container section" id="capital">
+  <div class="split">
+    <div class="split-text">
+      <h2>Working capital<br />that just works</h2>
+      <p>We provide professional remarketing for used construction equipment, rental and municipal fleets, trucks and other capital assets for many of the world's largest equipment companies.</p>
+      <div class="counters">
+        <div><strong data-count="100000">0</strong><span>Items sold</span></div>
+        <div><strong data-count="98">0</strong><span>% sell-through</span></div>
+        <div><strong data-count="45">0</strong><span>Countries shipped</span></div>
+      </div>
+      <a href="#sell" class="btn-red">Learn More</a>
+    </div>
+    <div class="split-img" style="background-image:url('/images/capital.jpg')"></div>
+  </div>
+</section>
+
+<!-- ============ NEWS ============ -->
+<section class="container section" id="news">
+  <div class="section-head">
+    <h2>Explore our<br />technology</h2>
+    <div>
+      <p>Market insights, buying guides and company news from the team behind thousands of successful equipment sales.</p>
+      <a href="#news" class="link-red">View All →</a>
+    </div>
+  </div>
+  <div class="news-grid" id="newsGrid"></div>
+</section>
+
+<!-- ============ SELL / CONTACT ============ -->
+<section class="container section" id="sell">
+  <div class="contact-wrap" id="about">
+    <div class="contact-info">
+      <h2>Sell your equipment<br />with us</h2>
+      <p>Tell us what you have. Our specialists will inspect, photograph and list your equipment, then manage bidding, payment and pickup.</p>
+      <ul class="steps">
+        <li><b>1</b><div><strong>Submit details</strong><span>Share make, model and location.</span></div></li>
+        <li><b>2</b><div><strong>Free inspection</strong><span>We verify condition on-site.</span></div></li>
+        <li><b>3</b><div><strong>Go live & get paid</strong><span>Funds released within 5 days.</span></div></li>
+      </ul>
+    </div>
+    <form class="contact-form" id="contactForm" novalidate>
+      <div class="row2">
+        <label>Full name*<input name="name" required /></label>
+        <label>Email*<input name="email" type="email" required /></label>
+      </div>
+      <div class="row2">
+        <label>Phone<input name="phone" /></label>
+        <label>I want to
+          <select name="type"><option>Sell equipment</option><option>Buy equipment</option><option>Fleet remarketing</option><option>General</option></select>
+        </label>
+      </div>
+      <label>Message*<textarea name="message" rows="4" required placeholder="e.g. 2 x 2018 CAT 320 excavators located in Nagpur, MH"></textarea></label>
+      <button class="btn-red" type="submit">Send Request</button>
+      <p class="form-msg" id="contactMsg"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="logo light">bid<span>haul</span></div>
+      <p>Online auctions for trucks, construction and heavy equipment.</p>
+    </div>
+    <div><h5>Auctions</h5><a href="#auctions">Live auctions</a><a href="#auctions">Results</a><a href="#auctions">Categories</a></div>
+    <div><h5>Company</h5><a href="#about">About</a><a href="#reviews">Reviews</a><a href="#news">News</a><a href="/admin">Admin</a></div>
+    <div>
+      <h5>Get new auctions by email</h5>
+      <form class="newsletter" id="newsletterForm">
+        <input type="email" name="email" placeholder="you@company.com" required />
+        <button class="btn-red">Subscribe</button>
+      </form>
+      <p class="form-msg" id="newsMsg"></p>
+    </div>
+  </div>
+  <div class="container copyright">© <span id="year"></span> BidHaul. All rights reserved.</div>
+</footer>
+
+<!-- ============ AUCTION MODAL ============ -->
+<div class="modal" id="auctionModal" aria-hidden="true">
+  <div class="modal-box wide">
+    <button class="modal-close" data-close>&times;</button>
+    <div id="auctionDetail"></div>
+  </div>
+</div>
+
+<!-- ============ LOGIN / REGISTER MODAL ============ -->
+<div class="modal" id="loginModal" aria-hidden="true">
+  <div class="modal-box">
+    <button class="modal-close" data-close>&times;</button>
+    <div class="auth-tabs" role="tablist">
+      <button type="button" class="auth-tab active" data-auth="login">Log In</button>
+      <button type="button" class="auth-tab" data-auth="register">Create Account</button>
+    </div>
+
+    <form class="auth-form" id="loginForm">
+      <h3>Welcome back</h3>
+      <label>User ID or email<input name="login" required placeholder="e.g. BH1001" autocomplete="username" /></label>
+      <label>Password<input name="password" type="password" required autocomplete="current-password" /></label>
+      <button class="btn-red" type="submit">Log In</button>
+      <p class="form-msg" id="loginMsg"></p>
+    </form>
+
+    <form class="auth-form hidden" id="registerForm">
+      <h3>Create your bidder account</h3>
+      <p class="muted" style="font-size:14px">You'll get a unique user ID to log in and place bids.</p>
+      <label>Full name*<input name="name" required maxlength="80" autocomplete="name" /></label>
+      <label>Email*<input name="email" type="email" required autocomplete="email" /></label>
+      <label>Mobile number<input name="phone" type="tel" placeholder="+91 98765 43210" autocomplete="tel" /></label>
+      <label>Password* <small class="muted">(min 6 characters)</small><input name="password" type="password" required minlength="6" autocomplete="new-password" /></label>
+      <button class="btn-red" type="submit">Create Account</button>
+      <p class="form-msg" id="registerMsg"></p>
+    </form>
+
+    <p class="muted auth-foot">Administrator? <a href="/admin" class="link-red">Go to the admin panel</a></p>
+  </div>
+</div>
+
+<!-- ============ ACCOUNT MODAL ============ -->
+<div class="modal" id="accountModal" aria-hidden="true">
+  <div class="modal-box">
+    <button class="modal-close" data-close>&times;</button>
+    <div id="accountBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

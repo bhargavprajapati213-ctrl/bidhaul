@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BidHaul Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/admin/admin.css" />
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<section class="login" id="loginView">
+  <form class="login-card" id="loginForm">
+    <div class="logo">bid<span>haul</span> <small>admin</small></div>
+    <label>Username<input name="username" value="admin" required /></label>
+    <label>Password<input name="password" type="password" placeholder="admin123" required /></label>
+    <button class="btn-red">Sign in</button>
+    <p class="err" id="loginErr"></p>
+    <a href="/" class="back">← Back to website</a>
+  </form>
+</section>
+
+<!-- ============ APP ============ -->
+<div class="app hidden" id="appView">
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">bid<span>haul</span> <small>admin</small></div>
+    <nav>
+      <button class="active" data-view="dashboard">📊 Dashboard</button>
+      <button data-view="auctions">🔨 Auctions</button>
+      <button data-view="bids">💰 Bids</button>
+      <button data-view="users">👤 Users</button>
+      <button data-view="messages">✉️ Messages <span class="count" id="unreadCount"></span></button>
+      <button data-view="subscribers">📬 Subscribers</button>
+    </nav>
+    <div class="side-foot">
+      <a href="/" target="_blank">↗ View website</a>
+      <button id="logoutBtn">Log out</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <h1 id="viewTitle">Dashboard</h1>
+      <div class="top-actions" id="topActions"></div>
+    </header>
+
+    <!-- Dashboard -->
+    <section class="view" id="view-dashboard">
+      <div class="stats" id="stats"></div>
+      <div class="panel">
+        <div class="panel-head"><h3>Latest bids</h3><button class="link" data-goto="bids">View all →</button></div>
+        <div class="table-wrap"><table id="latestBids"></table></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>Tools</h3></div>
+        <p class="muted">Reset restores the demo auctions and clears all bids, messages and subscribers. Registered users are kept.</p>
+        <button class="btn-outline danger" id="resetBtn">Reset demo data</button>
+      </div>
+    </section>
+
+    <!-- Auctions -->
+    <section class="view hidden" id="view-auctions">
+      <div class="panel">
+        <input class="search" id="auctionSearch" placeholder="Search auctions…" />
+        <div class="table-wrap"><table id="auctionTable"></table></div>
+      </div>
+    </section>
+
+    <!-- Bids -->
+    <section class="view hidden" id="view-bids">
+      <div class="panel"><div class="table-wrap"><table id="bidTable"></table></div></div>
+    </section>
+
+    <!-- Users -->
+    <section class="view hidden" id="view-users">
+      <div class="panel">
+        <input class="search" id="userSearch" placeholder="Search by user ID, name, email or phone…" />
+        <div class="table-wrap"><table id="userTable"></table></div>
+      </div>
+    </section>
+
+    <!-- Messages -->
+    <section class="view hidden" id="view-messages">
+      <div class="messages" id="messageList"></div>
+    </section>
+
+    <!-- Subscribers -->
+    <section class="view hidden" id="view-subscribers">
+      <div class="panel"><div class="table-wrap"><table id="subTable"></table></div></div>
+    </section>
+  </main>
+</div>
+
+<!-- ============ AUCTION FORM MODAL ============ -->
+<div class="modal" id="auctionModal">
+  <form class="modal-box" id="auctionForm">
+    <button type="button" class="modal-close" data-close>&times;</button>
+    <h3 id="formTitle">New auction</h3>
+    <input type="hidden" name="id" />
+    <label>Title*<input name="title" required maxlength="150" /></label>
+    <div class="row2">
+      <label>Category*<select name="category" id="catSelect" required></select></label>
+      <label>Location<input name="location" placeholder="City, State" /></label>
+    </div>
+    <div class="row2">
+      <label>Year<input name="year" type="number" min="1950" max="2100" /></label>
+      <label>Usage (hours / miles)<input name="hours" placeholder="e.g. 3,200 hrs" /></label>
+    </div>
+    <div class="row2">
+      <label>Starting bid (₹ INR)*<input name="startingBid" type="number" min="1" required /></label>
+      <label>Ends at*<input name="endsAt" type="datetime-local" required /></label>
+    </div>
+    <label>Image URL<input name="image" placeholder="https://…" /></label>
+    <div class="img-preview" id="imgPreview"></div>
+    <label>Description<textarea name="description" rows="4"></textarea></label>
+    <p class="err" id="formErr"></p>
+    <div class="form-actions">
+      <button type="button" class="btn-outline" data-close>Cancel</button>
+      <button class="btn-red" type="submit">Save auction</button>
+    </div>
+  </form>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="/admin/admin.js"></script>
+</body>
+</html>
